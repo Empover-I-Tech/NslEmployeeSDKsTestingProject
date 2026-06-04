@@ -8,8 +8,11 @@ export default function HomeScreen() {
     const sdkConfig = {
         mobileNumber: "9963759686",      // Required: User mobile number
         fcmToken: "",      // Optional: Firebase Cloud Messaging token
-        buildType: "UAT",                // Required: UAT or PROD
+        buildEnvironment: "UAT",                // Required: UAT or PROD
         languageCode: "en",              // Supported: en, hi, mr, te
+        authId: "R8T26ZBC01MNSUB4",
+        authToken: "ZXC26VBN01MQSUBWERTYUIOPLKJHGFDSAZXCVBNMLKJHG",
+
     };
 
     return (
@@ -26,7 +29,7 @@ export default function HomeScreen() {
                 <Button
                     title="Open GC SDK"
                     onPress={() => {
-                        navigation.navigate('GCSDKScreens', { navigateItem: sdkConfig });
+                        navigation.navigate('GCLoaderScreen', { navigateItem: sdkConfig });
                     }}
                 />
             </View>
