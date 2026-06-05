@@ -3,77 +3,61 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 
 import HomeScreen from './HomeScreen';
 
 import * as SDK from 'nslsubeejemployeesdk';
 
 import * as GCSDK from 'NslGoldClubEmployeeSdk';
-
+import { StatusBar } from 'react-native';
+console.log("SDKKK", SDK)
 const Stack = createNativeStackNavigator();
 
-export default function App() {
-  useEffect(() => {
-    SDK.initLocalisation();
-  }, []);
 
-  // Screens exported from SDK that should be added to navigation
-  const sdkScreens = [
-    'LoaderScreen',
-    'BottomTabsNavigatorEmp',
-    'HomeScreenEmp',
-    'FertilizerSeeds',
-    'YieldCalculator',
-    'SeedsCalculator',
-    'SamadhanScreen',
-    'RaiseComplaintScreen',
-    'MoreScreenRn',
-    'QRScannerRn',
-    'NearByScreen',
-    'KnowledgeCenterRn',
-    'CropDesiesDetection',
-    'CropDiagonstic',
-    'LanguageScreenRn',
-    'Agronomy',
-    'WeatherScreen',
-    'Remedyrecommendation',
-    'NearByRetailersScreen',
-    'AdvancedKnowledgeCenter',
-    'KnowledgeCenterDocsList',
-    'KnowledgeCenterPDFView',
-    'Location'
-  ];
+const AppContainer = ({ sdkScreens, GCSDKScreens }) => {
+  const state = useSelector(state => state);
 
-  const GCSDKScreens = [
-    'GCLoaderScreen'
-  ];
+  console.log(
+    'FULL REDUX STATE',
+    JSON.stringify(state, null, 2)
+  );
+  console.log("state.companyStyles", state?.companyStyles?.companyStyles?.primaryColor)
+
+  // Adjust this after checking console
+  const themeColor =
+    state?.companyStyles?.companyStyles?.primaryColor ||
+    '#FFFFFF';
 
   return (
-    <Provider store={SDK.store}>
-      <SafeAreaProvider>
-          <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF', }} edges={['top', 'bottom']}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <>
+      <StatusBar
+        backgroundColor={themeColor}
+        barStyle="light-content"
+        translucent={false}
+      />
+
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: themeColor,
+        }}
+        edges={['top', 'bottom']}
+      >
         <NavigationContainer>
           <Stack.Navigator>
-            {/* Local App Screen */}
             <Stack.Screen
               name="Home"
               component={HomeScreen}
               options={{ headerShown: false }}
             />
 
-            {/* SDK Screens */}
             {sdkScreens.map((screenName) => {
               const ScreenComponent = SDK[screenName];
 
               if (!ScreenComponent) {
-                console.warn(
-                  `Screen '${screenName}' is not exported from nslsubeejemployeesdk`
-                );
                 return null;
               }
-
 
               return (
                 <Stack.Screen
@@ -85,17 +69,12 @@ export default function App() {
               );
             })}
 
-            {/* GC SDK Screens */}
             {GCSDKScreens.map((screenName) => {
               const ScreenComponent = GCSDK[screenName];
 
               if (!ScreenComponent) {
-                console.warn(
-                  `Screen '${screenName}' is not exported from NslGoldClubEmployeeSdk`
-                );
                 return null;
               }
-
 
               return (
                 <Stack.Screen
@@ -108,8 +87,35 @@ export default function App() {
             })}
           </Stack.Navigator>
         </NavigationContainer>
-      </GestureHandlerRootView>
       </SafeAreaView>
+    </>
+  );
+};
+
+export default function App() {
+  useEffect(() => {
+    SDK.initLocalisation();
+  }, []);
+
+  const sdkScreens = [
+    'LoaderScreen',
+    'BottomTabsNavigatorEmp',
+    // ...
+  ];
+
+  const GCSDKScreens = [
+    'GCLoaderScreen',
+  ];
+
+  return (
+    <Provider store={SDK.store}>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <AppContainer
+            sdkScreens={sdkScreens}
+            GCSDKScreens={GCSDKScreens}
+          />
+        </GestureHandlerRootView>
       </SafeAreaProvider>
     </Provider>
   );
