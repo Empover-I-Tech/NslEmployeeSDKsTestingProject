@@ -9,6 +9,10 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
+import com.mappls.sdk.maps.Mappls
+import com.mappls.sdk.services.account.MapplsAccountManager
+import com.nslemployeesdkstestingproject.Maps.MapplsPackage
+
 
 class MainApplication : Application(), ReactApplication {
 
@@ -18,6 +22,7 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
+                add(MapplsPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"
@@ -33,6 +38,16 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
+            // Set Mappls SDK credentials
+        MapplsAccountManager.getInstance().setRestAPIKey("5zf2txekry89tciw19sgmjpo7w133ioj")
+        MapplsAccountManager.getInstance().setMapSDKKey("hgxmpb6gldoe2jb2r3upyje5rej6v72p")
+        MapplsAccountManager.getInstance()
+            .setAtlasClientId("qwj3TMxdzY7SIXZq8s3A4xDzY3LBjO3xAepnlJFBOjA_DQ7xzJWYtgfi1mKTFeTCLePMnWjzcGfP3PeOP6QozA==")
+        MapplsAccountManager.getInstance()
+            .setAtlasClientSecret("NdJUAD9O1c0LyinGBY0q0A17p-U96zMmvmehrrw4OVI91FWsWwBD2VCd3HVpTBawIi_g0BxxNireuLAJZpwie4283oO0mRYf")
+
+        // Initialize Mappls SDK
+        Mappls.getInstance(applicationContext)
     loadReactNative(this)
   }
 }

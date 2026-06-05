@@ -112,6 +112,8 @@ dependencies {
     implementation("com.facebook.react:react-android")
     implementation 'com.facebook.fresco:fresco:3.6.0'           // core
     implementation 'com.facebook.fresco:animated-gif:3.6.0'     // GIF support
+        implementation 'com.mappls.sdk:mappls-android-sdk:8.2.2'
+ 
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

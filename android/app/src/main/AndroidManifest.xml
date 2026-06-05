@@ -28,5 +28,14 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <meta-data
+            android:name="com.mappls.sdk.apikey"
+            android:value="5zf2txekry89tciw19sgmjpo7w133ioj" />
+        <meta-data
+            android:name="com.mappls.sdk.clientId"
+            android:value="qwj3TMxdzY7SIXZq8s3A4xDzY3LBjO3xAepnlJFBOjA_DQ7xzJWYtgfi1mKTFeTCLePMnWjzcGfP3PeOP6QozA==" />
+        <meta-data
+            android:name="com.mappls.sdk.clientSecret"
+            android:value="NdJUAD9O1c0LyinGBY0q0A17p-U96zMmvmehrrw4OVI91FWsWwBD2VCd3HVpTBawIi_g0BxxNireuLAJZpwie4283oO0mRYf" />
     </application>
 </manifest>

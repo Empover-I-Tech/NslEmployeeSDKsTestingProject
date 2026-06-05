@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 
 import HomeScreen from './HomeScreen';
@@ -50,6 +51,8 @@ export default function App() {
 
   return (
     <Provider store={SDK.store}>
+      <SafeAreaProvider>
+          <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF', }} edges={['top', 'bottom']}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
@@ -106,6 +109,8 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
+      </SafeAreaView>
+      </SafeAreaProvider>
     </Provider>
   );
 }

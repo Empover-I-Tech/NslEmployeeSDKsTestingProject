@@ -28,6 +28,7 @@
     "axios": "^1.7.7",
     "i18n-js": "^3.8.0",
     "lodash.memoize": "^4.1.2",
+    "mappls-map-react-native": "^1.0.12",
     "moment": "^2.30.1",
     "NslGoldClubEmployeeSdk": "github:Empover-I-Tech/NslGoldClubEmployeeSdk",
     "nslsubeejemployeesdk": "github:Empover-I-Tech/NslSubeejEmployeeSdk",
