@@ -37,6 +37,11 @@ export default function App() {
     'Agronomy',
     'WeatherScreen',
     'Remedyrecommendation',
+    'NearByRetailersScreen',
+    'AdvancedKnowledgeCenter',
+    'KnowledgeCenterDocsList',
+    'KnowledgeCenterPDFView',
+    'Location'
   ];
 
   const GCSDKScreens = [
