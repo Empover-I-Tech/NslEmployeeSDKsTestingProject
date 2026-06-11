@@ -60,6 +60,7 @@ export default function HomeScreen() {
             <TextInput
                 style={styles.input}
                 value={mobileNumber}
+                maxLength={10}
                 keyboardType="phone-pad"
                 onChangeText={setMobileNumber}
             />
