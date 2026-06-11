@@ -14,7 +14,7 @@ export default function HomeScreen() {
 
     const navigation = useNavigation();
 
-    const [mobileNumber, setMobileNumber] = useState('9963759686'); 
+    const [mobileNumber, setMobileNumber] = useState('9963759686');
     const [authId, setAuthId] = useState('R8T26ZBC01MNSUB4');
     const [authToken, setAuthToken] = useState(
         'ZXC26VBN01MQSUBWERTYUIOPLKJHGFDSAZXCVBNMLKJHG'
@@ -149,12 +149,12 @@ export default function HomeScreen() {
                 <Button
                     title="Open GC SDK"
                     onPress={() =>
-                        navigation.navigate(
-                            'GoldClubSDK',
-                            {
-                                navigateItem: getConfig(),
-                            }
-                        )
+                        navigation.navigate('GoldClubSDK', {
+                            navigateItem: getConfig(),
+                            onSDKClose: () => {
+                                navigation.navigate('HomeScreen'); // your main app screen
+                            },
+                        })
                     }
                 />
             </View>
