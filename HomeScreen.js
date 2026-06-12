@@ -140,6 +140,9 @@ export default function HomeScreen() {
                             'SubeejSDK',
                             {
                                 navigateItem: getConfig(),
+                                onSDKClose: () => {
+                                    navigation.navigate('HomeScreen'); // your main app screen
+                                },
                             }
                         )
                     }
